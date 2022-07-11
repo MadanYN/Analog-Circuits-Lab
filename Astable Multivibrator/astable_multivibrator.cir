@@ -1,0 +1,29 @@
+astable multivibrator
+
+.include ua741.txt
+.subckt zener_4.7 1 2 
+d1 1 2 DF 
+dZ 3 1 DR 
+vZ 2 3 3.5 
+.model DF D ( IS=27.5p RS=0.620 N=1.10 CJO=78.3p VJ=1.00 M=0.330 TT=50.1n) 
+.model DR D ( IS=5.49f RS=50 N=1.77 ) 
+.ends 
+
+x1 1 2 3 4 5 ua741
+r3 5 7 1k
+r2 7 1 35k
+r1 1 0 30k
+r 2 7 50k
+c 2 0 0.01u
+x2 7 8 zener_4.7 
+x3 0 8 zener_4.7
+
+vp 3 0 15
+vn 4 0 -15
+
+.tran 10u 10m
+.control
+run
+plot v(5) v(7)
+.endc
+.end

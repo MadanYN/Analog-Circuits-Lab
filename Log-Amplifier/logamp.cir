@@ -1,0 +1,30 @@
+logamp
+
+.include TL084
+.include 1N4148
+xa in 4 2 3 4 TL084
+xb 0  5 6 7 8 TL084
+xc 10 9 11 12 13 TL084
+xd 13 1 14 15 out TL084
+r 4 5 1.45k
+r11 8 9 10k
+r12 9 13 10k
+r2 1 0 2k
+r3 out 1 34k
+d 5 8 1N4148 
+voffset 10 0 -0.28650v
+vcca 2 0 dc  15v
+veea 3 0 dc -15v
+vccb 6 0 dc  15v
+veeb 7 0 dc -15v
+vccc 11 0 dc  15v
+veec 12 0 dc -15v
+vccd 14  0 dc  15v
+veed 15 0 dc -15v
+vin in 0 dc 
+.dc vin 0 10 0.1
+.control
+run
+print v(out)>logamp5.txt
+.endc
+.end
